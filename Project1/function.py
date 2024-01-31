@@ -24,19 +24,17 @@ def invert_matrix_with_changed_column(A, A_inv, x, i):
     Q[:, i] = l_hat
 
     # Шаг 5: Находим D = Q * A_inv
-    D = np.dot(Q, A_inv)
+    B_inv = np.dot(Q, A_inv)
 
-    return D
+    return B_inv
 
 
 def input_matrix():
-    # Ввод размерности квадратной матрицы A
     n = int(input("Введите размерность квадратной матрицы A: "))
     if n <= 0:
         print("Размерность квадратной матрицы должна быть положительным числом.")
         exit()
 
-    # Ввод элементов матрицы A
     A = np.empty((n, n))
     for i in range(n):
         row = input(f"Введите строку {i + 1} матрицы A через пробел: ").split()
@@ -54,10 +52,8 @@ def input_matrix():
         print("Матрица A является вырожденной (сингулярной). Обратная матрица не может быть вычислена.")
         exit()
 
-    # Обратная матрица к A
     A_inv = np.linalg.inv(A)
 
-    # Ввод вектора x
     x = input(f"Введите вектор x высоты {n} через пробел: ").split()
     if len(x) != n:
         print(f"Размерность вектора x должна быть равна {n}.")
